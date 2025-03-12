@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Results</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #1a1a2e;
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+        }
+
+        .results-container {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 90%;
+        }
+
+        h1 {
+            color: #00ff88;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+        }
+
+        .score-details {
+            margin: 20px 0;
+            font-size: 1.2rem;
+        }
+
+        .score-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .final-score {
+            font-size: 3rem;
+            color: #00ff88;
+            margin: 30px 0;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        button {
+            background: #00ff88;
+            color: #1a1a2e;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 255, 136, 0.4);
+        }
+
+        .trophy {
+            font-size: 5rem;
+            color: #ffd700;
+            margin: 20px 0;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="results-container">
+        <i class="fas fa-trophy trophy"></i>
+        <h1>Game Complete!</h1>
+        <div class="score-details">
+            <div class="score-item">
+                <span>Base Score:</span>
+                <span id="baseScore">0</span>
+            </div>
+            <div class="score-item">
+                <span>Time Bonus:</span>
+                <span id="timeBonus">0</span>
+            </div>
+            <div class="score-item">
+                <span>Move Bonus:</span>
+                <span id="moveBonus">0</span>
+            </div>
+            <div class="score-item">
+                <span>Moves:</span>
+                <span id="totalMoves">0</span>
+            </div>
+            <div class="score-item">
+                <span>Time:</span>
+                <span id="totalTime">0s</span>
+            </div>
+        </div>
+        <div class="final-score">
+            Total Score: <span id="finalScore">0</span>
+        </div>
+        <div class="buttons">
+            <button onclick="window.location.href='index.html'">Play Again</button>
+            <button onclick="shareScore()">Share Score</button>
+        </div>
+    </div>
+    <script>
+        // Get scores from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        document.getElementById('baseScore').textContent = urlParams.get('baseScore') || 0;
+        document.getElementById('timeBonus').textContent = urlParams.get('timeBonus') || 0;
+        document.getElementById('moveBonus').textContent = urlParams.get('moveBonus') || 0;
+        document.getElementById('totalMoves').textContent = urlParams.get('moves') || 0;
+        document.getElementById('totalTime').textContent = urlParams.get('time') + 's' || '0s';
+        document.getElementById('finalScore').textContent = urlParams.get('finalScore') || 0;
+
+        function shareScore() {
+            const score = document.getElementById('finalScore').textContent;
+            const text = `I scored ${score} points in Memory Match Game! Can you beat my score?`;
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Memory Match Score',
+                    text: text,
+                    url: window.location.href
+                });
+            } else {
+                alert('Share your score: ' + text);
+            }
+        }
+    </script>
+</body>
+</html>

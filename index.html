@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Card Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="game-header">
+            <h1><i class="fas fa-gamepad"></i> Memory Match</h1>
+            <div class="stats-container">
+                <div class="stats-box">
+                    <i class="fas fa-walking"></i>
+                    <div class="stats">
+                        <span>Moves</span>
+                        <span id="moves">0</span>
+                    </div>
+                </div>
+                <div class="stats-box">
+                    <i class="fas fa-star"></i>
+                    <div class="stats">
+                        <span>Score</span>
+                        <span id="score">0</span>
+                    </div>
+                </div>
+                <div class="stats-box">
+                    <i class="fas fa-clock"></i>
+                    <div class="stats">
+                        <span>Time</span>
+                        <span id="timer">0s</span>
+                    </div>
+                </div>
+            </div>
+            <button id="restart"><i class="fas fa-redo"></i> Restart Game</button>
+            <button id="toggleSound" class="sound-btn"><i class="fas fa-volume-up"></i></button>
+        </div>
+        <div class="game-board"></div>
+    </div>
+    
+    <!-- Audio elements -->
+    <audio id="flipSound" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3" preload="auto"></audio>
+    <audio id="matchSound" src="https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3" preload="auto"></audio>
+    <audio id="noMatchSound" src="https://assets.mixkit.co/active_storage/sfx/2570/2570-preview.mp3" preload="auto"></audio>
+    <audio id="gameOverSound" src="https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3" preload="auto"></audio>
+    
+    <script src="script.js"></script>
+</body>
+</html>

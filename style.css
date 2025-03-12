@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #1a1a2e;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    position: relative;
+}
+
+.game-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    color: #00ff88;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+h1 i {
+    margin-right: 10px;
+}
+
+.sound-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #00ff88;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(0, 255, 136, 0.2);
+}
+
+.sound-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 255, 136, 0.3);
+}
+
+.sound-btn.muted {
+    color: #ff4757;
+}
+
+.stats-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.stats-box {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px 25px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.stats-box i {
+    font-size: 1.5rem;
+    color: #00ff88;
+}
+
+.stats {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.stats span:first-child {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.stats span:last-child {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+#restart {
+    background: #00ff88;
+    color: #1a1a2e;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+}
+
+#restart:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 255, 136, 0.4);
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    max-width: 800px;
+    margin: 0 auto;
+    perspective: 1000px;
+}
+
+.card {
+    aspect-ratio: 3/4;
+    position: relative;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-front {
+    background: linear-gradient(135deg, #0a4740, #16a085);
+    border: 2px solid #1abc9c;
+}
+
+.card-back {
+    background: linear-gradient(135deg, #16a085, #1abc9c);
+    transform: rotateY(180deg);
+    border: 2px solid #1abc9c;
+}
+
+.card.matched {
+    animation: pulse 0.5s;
+}
+
+.card.matched .card-back {
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    border-color: #2ecc71;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1) rotateY(180deg); }
+    50% { transform: scale(1.1) rotateY(180deg); }
+    100% { transform: scale(1) rotateY(180deg); }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .stats-container {
+        gap: 15px;
+    }
+
+    .stats-box {
+        padding: 10px 15px;
+    }
+
+    .game-board {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+
+    .sound-btn {
+        top: 10px;
+        right: 10px;
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .stats-box {
+        width: 100%;
+        max-width: 200px;
+        justify-content: center;
+    }
+}
